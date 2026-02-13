@@ -103,7 +103,7 @@ def gerar_excel_em_memoria(df):
     formato_bloqueado = workbook.add_format({'locked': True, 'bg_color': '#f2f2f2'})
     formato_liberado = workbook.add_format({'locked': False})
 
-    colunas_para_bloquear = ["ID iFood", "Status", "Nível"]
+    colunas_para_bloquear = ["Nível", "Categoria", "Produto Pai", "Item / Opcional", "Status", "ID iFood"]
 
     for col_num, col_name in enumerate(df.columns):
         max_len = max(df[col_name].astype(str).map(len).max(), len(str(col_name))) + 2
