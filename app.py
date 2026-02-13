@@ -193,7 +193,7 @@ with tab1:
                         st.download_button(
                             label="📥 Clique aqui para Baixar o Excel",
                             data=excel_data,
-                            file_name=f"Cardapio_iFood_{data_str}.xlsx",
+                            file_name=f"Cardapio_iFood_{merchant_id}_{data_str}.xlsx",
                             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                         )
                 except Exception as e:
