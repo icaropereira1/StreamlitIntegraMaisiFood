@@ -246,7 +246,7 @@ with tab2:
                         if codigo_no_ifood == novo_codigo:
                             pulados += 1
                         else:
-                            status_text.text(f"Atualizando: {nome[:30]}... ({codigo_no_ifood} ➡️ {novo_codigo})")
+                            status_text.text(f"Atualizando: {nome[:70]}... ({codigo_no_ifood} ➡️ {novo_codigo})")
                             resp = atualizar_item(token, merchant_id, id_ifood, novo_codigo, nivel)
                             
                             if resp.status_code == 200:
