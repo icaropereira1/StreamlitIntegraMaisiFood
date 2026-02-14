@@ -119,7 +119,8 @@ def gerar_excel_em_memoria(df):
         'autofilter': True,
         'objects': True,
         'select_locked_cells': True,
-        'select_unlocked_cells': True
+        'select_unlocked_cells': True, 
+        'format_columns': True
     })
     
     writer.close()
