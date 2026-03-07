@@ -48,12 +48,25 @@ def logar_vuca(login, senha, instancia, id_unidade):
         "auth_login": login, "auth_senha": senha,
         "url": f"/retaguarda/pg_aplicativos_cardapio_ifood.php?csv=1&form=1&id_unidade={id_unidade}"
     }, allow_redirects=True)
+    print(f"Status Code: {r.status_code}")
+    print(f"URL Final: {r.url}") # Verifica se houve o redirecionamento esperado
+    print(r.text) # Veja o todo o HTML retornado para entender o que aconteceu
     
-    if "auth_login" in r.text or "não está autenticado" in r.text.lower():
-        raise Exception("Verifique usuário e senha.")
+    
+    if r.status_code != 200:
+        raise Exception("Falha no login. Verifique as credenciais e tente novamente.")
     
     return session, url_login
+'''
+def extrair_cardapio_vuca(session, url_login, id_unidade):
+    soup = BeautifulSoup(session.get(f"{url_login}pg_aplicativos_cardapio_ifood.php?csv=1&form=1&id_unidade={id_unidade}").content, "html.parser")
+    itens = []
+    for row in soup.find_all("tr",  class=lambda x: x and "js-tr-" in x):
+        pdv_item_vuca = row.find("data-id")
+'''
 
+
+    
 def extrair_cardapio_ifood(token, m_id):
     headers = {"Authorization": f"Bearer {token}"}
     
@@ -315,7 +328,7 @@ with tab3:
                 try:
                     session, url_login = logar_vuca(v_login, v_senha, v_instancia, v_id_unidade)
                     st.success("Login no Vuca realizado com sucesso!")
-                    st.info("")
+                   #st.info("")
 
                 except Exception as e:
                     st.error(f"Erro ao logar no Vuca: {e}")
